@@ -14,6 +14,7 @@
 		D5B88BCC28757EDE0013F98A /* MemoShowVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B88BCB28757EDE0013F98A /* MemoShowVIew.swift */; };
 		D5B88BCF287587300013F98A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5B88BCE287587300013F98A /* RealmSwift */; };
 		D5B88BD22876FA440013F98A /* QWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B88BD12876FA440013F98A /* QWord.swift */; };
+		D5B88BD42876FD500013F98A /* MemoAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B88BD32876FD500013F98A /* MemoAddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D5B88BC42875660D0013F98A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D5B88BCB28757EDE0013F98A /* MemoShowVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoShowVIew.swift; sourceTree = "<group>"; };
 		D5B88BD12876FA440013F98A /* QWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QWord.swift; sourceTree = "<group>"; };
+		D5B88BD32876FD500013F98A /* MemoAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoAddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				D5B88BBD287566090013F98A /* speedmemoappApp.swift */,
 				D5B88BBF287566090013F98A /* ContentView.swift */,
 				D5B88BCB28757EDE0013F98A /* MemoShowVIew.swift */,
+				D5B88BD32876FD500013F98A /* MemoAddView.swift */,
 				D5B88BC12875660D0013F98A /* Assets.xcassets */,
 				D5B88BC32875660D0013F98A /* Preview Content */,
 			);
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B88BC0287566090013F98A /* ContentView.swift in Sources */,
+				D5B88BD42876FD500013F98A /* MemoAddView.swift in Sources */,
 				D5B88BCC28757EDE0013F98A /* MemoShowVIew.swift in Sources */,
 				D5B88BBE287566090013F98A /* speedmemoappApp.swift in Sources */,
 				D5B88BD22876FA440013F98A /* QWord.swift in Sources */,

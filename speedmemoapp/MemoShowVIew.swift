@@ -9,30 +9,41 @@ import SwiftUI
 import RealmSwift
 
 struct MemoShowVIew: View {
-    
+    @ObservedResults(QWord.self) var qwords
+    @State var isShowMemoAddView = false
     var memos : [String] = ["プルアップ抵抗","Adesivo","アセトン"]
     var body: some View {
         
-        NavigationView {
-            List{
-                ForEach(memos,id:\.self){ memo in
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text(memo)
-                                .font(.headline)
-                            Text("未登録")
+        VStack{
+            NavigationView {
+                List{
+                    ForEach(qwords){ qword in
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text(qword.wordName)
+                                    .font(.headline)
+                                Text(qword.meaning)
+                            }
+                            
+                            Spacer()
+                            Image(systemName: "questionmark.square.dashed")
                         }
-                        
-                        Spacer()
-                        Image(systemName: "questionmark.square.dashed")
                     }
                 }
+                .listStyle(InsetListStyle())
+                .navigationTitle(Text("単語一覧"))
+            }
+        
+            Button(action: {
+                isShowMemoAddView = true
+            }, label: {
+                Text("単語の追加")
+            })
+            .sheet(isPresented: $isShowMemoAddView) {
+                MemoAddView()
             }
             
-            .listStyle(InsetListStyle())
-            .navigationTitle(Text("単語一覧"))
         }
-        
         
     }
 }
