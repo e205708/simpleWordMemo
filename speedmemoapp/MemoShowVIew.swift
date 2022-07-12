@@ -11,7 +11,7 @@ import RealmSwift
 struct MemoShowVIew: View {
     @ObservedResults(QWord.self) var qwords
     @State var isShowMemoAddView = false
-    var memos : [String] = ["プルアップ抵抗","Adesivo","アセトン"]
+    
     var body: some View {
         
         VStack{
@@ -28,6 +28,19 @@ struct MemoShowVIew: View {
                             Spacer()
                             Image(systemName: "questionmark.square.dashed")
                         }
+                        .contextMenu(menuItems:{
+                            Button(action: {
+                                //削除する
+                                let deleteQword = qword.thaw()!
+                                let realm = try! Realm()
+                                try! realm.write{
+                                    realm.delete(deleteQword)
+                                }
+                                
+                            }, label: {
+                                Text("削除")
+                            })
+                        })
                     }
                 }
                 .listStyle(InsetListStyle())
@@ -53,3 +66,4 @@ struct MemoShowVIew_Previews: PreviewProvider {
         MemoShowVIew()
     }
 }
+
