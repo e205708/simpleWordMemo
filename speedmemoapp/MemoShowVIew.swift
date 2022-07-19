@@ -11,6 +11,7 @@ import RealmSwift
 struct MemoShowVIew: View {
     @ObservedResults(QWord.self) var qwords
     @State var isShowMemoAddView = false
+    @State var isShowMemoEditView = false
     
     var body: some View {
         
@@ -24,6 +25,13 @@ struct MemoShowVIew: View {
                                     .font(.headline)
                                 Text(qword.meaning)
                             }
+                            .onTapGesture {
+                                isShowMemoEditView = true
+                            }
+                            .sheet(isPresented: $isShowMemoEditView){
+                                MemoEditView(qword: qword)
+                            }
+                            
                             
                             Spacer()
                             Image(systemName: "questionmark.square.dashed")
