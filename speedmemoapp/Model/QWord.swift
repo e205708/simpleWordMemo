@@ -13,6 +13,7 @@ class QWord: Object,ObjectKeyIdentifiable {
     @Persisted var addedDate: Date = Date()
     @Persisted var isUnderstood: Bool  = false//登録済みかそうでないか
     @Persisted var meaning: String  = "未登録"//ワードの意味
+    @Persisted var tagName: String = "" //タグ名
     @Persisted(primaryKey: true) var _id: ObjectId
     
     

@@ -13,6 +13,8 @@ struct MemoShowVIew: View {
     @State var isShowMemoAddView = false
     @State var isShowMemoEditView = false
     
+    @State var selectedQword : QWord = QWord(wordName: "")
+    
     var body: some View {
         
         VStack{
@@ -27,14 +29,23 @@ struct MemoShowVIew: View {
                             }
                             .onTapGesture {
                                 isShowMemoEditView = true
+                                selectedQword = qword
                             }
                             .sheet(isPresented: $isShowMemoEditView){
-                                MemoEditView(qword: qword)
+                                MemoEditView(qword: $selectedQword)
                             }
                             
                             
                             Spacer()
-                            Image(systemName: "questionmark.square.dashed")
+                            HStack{
+                                
+                                Image(systemName: "tag")
+                                    
+                                if qword.tagName != ""{
+                                    Text(qword.tagName).font(.footnote)
+                                }
+                            }
+                            Image(systemName: qword.isUnderstood ? "checkmark.square" : "questionmark.square.dashed")
                         }
                         .contextMenu(menuItems:{
                             Button(action: {
@@ -69,9 +80,10 @@ struct MemoShowVIew: View {
     }
 }
 
-struct MemoShowVIew_Previews: PreviewProvider {
-    static var previews: some View {
-        MemoShowVIew()
-    }
-}
+//
+//struct MemoShowVIew_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MemoShowVIew()
+//    }
+//}
 

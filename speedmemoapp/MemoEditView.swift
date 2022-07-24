@@ -9,15 +9,17 @@ import SwiftUI
 import RealmSwift
 
 struct MemoEditView: View {
-    let qword : QWord
+    @Binding var qword : QWord
     
-    @State private var textBox : String = ""
+    @State private var textBox : String = "" //単語の意味が入る
+    @State private var tagBox : String = "" //タグ名が入る
     @State private var showNoValueSignal : Bool = true
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack{
             HStack{
+                
                 TextField("",text:$textBox,onEditingChanged: {_ in 
                     //改行をした時に呼ばれる
                     if textBox == ""{
@@ -30,9 +32,13 @@ struct MemoEditView: View {
                 
                 //空白ならバッテンを表示
                 Image(systemName: showNoValueSignal ?  "xmark.circle": "checkmark.circle")
-                
+            
             }
                 
+            HStack{
+                Image(systemName: "tag")
+                TextField("",text:$tagBox)
+            }
             
             Button(action: {
                 if textBox != ""{
@@ -41,6 +47,10 @@ struct MemoEditView: View {
                     try! realm.write {
                         tmpQword?.meaning = textBox
                         tmpQword?.isUnderstood = true
+                        
+                        if tagBox != ""{
+                            tmpQword?.tagName = tagBox
+                        }
                     }
                     
                     dismiss()
