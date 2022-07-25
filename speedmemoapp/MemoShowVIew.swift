@@ -8,6 +8,17 @@
 import SwiftUI
 import RealmSwift
 
+
+extension View {
+  func navigationBarTitle<Content>(
+    @ViewBuilder content: () -> Content
+  ) -> some View where Content : View {
+    self.toolbar {
+      ToolbarItem(placement: .principal, content: content)
+    }
+  }
+}
+
 struct MemoShowVIew: View {
     @ObservedResults(QWord.self) var qwords
     @State var isShowMemoAddView = false
@@ -63,13 +74,22 @@ struct MemoShowVIew: View {
                     }
                 }
                 .listStyle(InsetListStyle())
-                .navigationTitle(Text("単語一覧"))
+                .navigationBarTitle{
+                    Image(systemName: "books.vertical")
+                    
+                }
+                
             }
         
             Button(action: {
                 isShowMemoAddView = true
             }, label: {
-                Text("単語の追加")
+                Image(systemName: "plus.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.red)
+                    
             })
             .sheet(isPresented: $isShowMemoAddView) {
                 MemoAddView()

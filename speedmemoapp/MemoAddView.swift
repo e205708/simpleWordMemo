@@ -16,15 +16,23 @@ struct MemoAddView: View {
     var body: some View {
         
         VStack{
-            TextField(text: $inputText){
-                Text("入力")
+            
+            HStack{
+                Image(systemName: "text.book.closed")
+                TextField(text: $inputText){
+                    
+                }
             }
             
             Button(action: {
                 $qwords.append(QWord(wordName: inputText))
                 dismiss()
             }, label: {
-                Text("追加")
+                Image(systemName: "plus.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.red)
             })
         }
         

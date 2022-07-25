@@ -20,6 +20,7 @@ struct MemoEditView: View {
         VStack{
             HStack{
                 
+                Image(systemName: "text.bubble")
                 TextField("",text:$textBox,onEditingChanged: {_ in 
                     //改行をした時に呼ばれる
                     if textBox == ""{
@@ -34,11 +35,15 @@ struct MemoEditView: View {
                 Image(systemName: showNoValueSignal ?  "xmark.circle": "checkmark.circle")
             
             }
+            .padding()
                 
+            
+            
             HStack{
                 Image(systemName: "tag")
                 TextField("",text:$tagBox)
             }
+            .padding()
             
             Button(action: {
                 if textBox != ""{
@@ -57,7 +62,10 @@ struct MemoEditView: View {
                 }
                 
             }, label: {
-                Text("完了")
+                Image(systemName: "checkmark.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 30, height: 30)
             })
             
         }
