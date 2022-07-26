@@ -48,14 +48,35 @@ struct MemoShowVIew: View {
                             
                             
                             Spacer()
+                            
+                            //tag名変更用
+                            let haveDistinctValueQwords = try! Realm().objects(QWord.self).distinct(by: ["tagName"])
+                            let realm = try! Realm()
+                            
                             HStack{
-                                
-                                Image(systemName: "tag")
+                                //tagアイコンをタップした際にメニューが表示され、タグ名を変更することができる
+                                Menu(content: {
+                                    ForEach(haveDistinctValueQwords){ fQword in
+                                        Button(action: {
+                                            let fixedQword = qword.thaw()
+                                            try! realm.write{
+                                                fixedQword?.tagName = fQword.tagName
+                                            }
+                                        }, label: {
+                                            Text("\(fQword.tagName)")
+                                        })
+                                        
+                                    }
+                                }, label: {
+                                    Image(systemName: "tag")
+                                })
                                     
                                 if qword.tagName != ""{
                                     Text(qword.tagName).font(.footnote)
                                 }
                             }
+                            
+                            
                             Image(systemName: qword.isUnderstood ? "checkmark.square" : "questionmark.square.dashed")
                         }
                         .contextMenu(menuItems:{

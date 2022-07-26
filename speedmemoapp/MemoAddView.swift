@@ -22,6 +22,7 @@ struct MemoAddView: View {
                 TextField(text: $inputText){
                     
                 }
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
             Button(action: {

@@ -21,18 +21,10 @@ struct MemoEditView: View {
             HStack{
                 
                 Image(systemName: "text.bubble")
-                TextField("",text:$textBox,onEditingChanged: {_ in 
-                    //改行をした時に呼ばれる
-                    if textBox == ""{
-                        showNoValueSignal = true
-                    }
-                    else{
-                        showNoValueSignal = false
-                    }
-                })
+                TextField("",text:$textBox)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                //空白ならバッテンを表示
-                Image(systemName: showNoValueSignal ?  "xmark.circle": "checkmark.circle")
+
             
             }
             .padding()
@@ -42,24 +34,25 @@ struct MemoEditView: View {
             HStack{
                 Image(systemName: "tag")
                 TextField("",text:$tagBox)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .padding()
             
             Button(action: {
-                if textBox != ""{
-                    let tmpQword = qword.thaw()
-                    let realm = try! Realm()
-                    try! realm.write {
-                        tmpQword?.meaning = textBox
-                        tmpQword?.isUnderstood = true
-                        
-                        if tagBox != ""{
-                            tmpQword?.tagName = tagBox
-                        }
-                    }
+               
+                let tmpQword = qword.thaw()
+                let realm = try! Realm()
+                try! realm.write {
+                    tmpQword?.meaning = textBox
+                    tmpQword?.isUnderstood = true
                     
-                    dismiss()
+                    if tagBox != ""{
+                        tmpQword?.tagName = tagBox
+                    }
                 }
+                
+                dismiss()
+                
                 
             }, label: {
                 Image(systemName: "checkmark.circle")
