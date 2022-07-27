@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MemoShowVIew()
+        TabView{
+            
+            MemoShowVIew()
+                .tabItem{
+                    Image(systemName: "books.vertical")
+                }
+            
+            TagFilterView()
+                .tabItem {
+                    Image(systemName: "tag")
+                }
+            
+            
+        }
     }
 }
 
